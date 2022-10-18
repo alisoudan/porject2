@@ -1,23 +1,24 @@
-<?php
+<!DOCTYPE html>
+<html lang="en">
 
-$data = json_decode($_POST['data'], true);
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>UZBase.uz</title>
+</head>
 
-$token = "5153339690:AAH1_INtuRSq6mhOou37pO-nnm5VDscUgZk";
-$chat_id = "-984986447";
-$arr = array(
-  'Имя пользователя: ' => $data['name'],
-  'Телефон: ' => $data['tel'],
-  'Email' => $data['email'],
-  'Сообщение:' => $data['message']
-);
+<body>
+    <div class="form">
+        <form action="" onsubmit="return sendtelegram()">
+            <input type="text" name="name" id="name" placeholder="Ismingiz" required>
+            <input type="email" name="email" id="email" placeholder="Email manzilingiz" required> <br> <br>
+            <textarea name="message" id="message" cols="45" rows="10" placeholder="Izoh qoldiring" required></textarea> <br> <br>
+            <input type="submit" value="Yuborish" id="btn">
+        </form>
+    </div>
+    <script src="sendtelegram.js"></script>
+</body>
 
-foreach($arr as $key => $value) {
-  $txt .= "<b>".$key."</b> ".$value."%0A";
-};
-
-$sendToTelegram = fopen("https://api.telegram.org/bot{$token}/sendMessage?chat_id={$chat_id}&parse_mode=html&text={$txt}","r");
-
-if (!$sendToTelegram) {
-  echo "Error";
-}
-?>
+</html>
